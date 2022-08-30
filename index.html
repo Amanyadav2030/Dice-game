@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dice Game</title>
+    <script
+      src="https://kit.fontawesome.com/4560e2a1c5.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        background: #efefef;
+      }
+      #game {
+        display: flex;
+        width: 65%;
+        border: 1px solid transparent;
+        margin: 31px auto;
+        font-size: 160px;
+        justify-content: center;
+        gap: 50px;
+      }
+      button {
+        margin: auto;
+        border: 1px solid darkblue;
+        display: block;
+        background: white;
+        border-radius: 3px;
+        font-size: 20px;
+        padding: 5px 13px;
+        font-weight: 700;
+        cursor: pointer;
+        color: darkblue;
+      }
+      p {
+        font-size: 26px;
+        margin: auto;
+        text-align: center;
+        font-family: cursive;
+      }
+      #winner {
+        text-align: center;
+        font-size: 50px;
+        text-shadow: 3px 3px 3px grey;
+        color: darkblue;
+        margin-bottom: 15px;
+      }
+      button:hover {
+        box-shadow: 1px 1px 3px grey;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="winner">Play the Game</div>
+    <div id="game">
+      <div id="member-1">
+        <p class="memA">Member A</p>
+        <i class="fa-solid fa-dice-one"></i>
+      </div>
+      <div id="member-2">
+        <p class="memB">Member B</p>
+        <i class="fa-solid fa-dice-one"></i>
+      </div>
+      <div id="member-3">
+        <p class="memC">Member C</p>
+        <i class="fa-solid fa-dice-one"></i>
+      </div>
+    </div>
+    <button id="roll">Rol The Dice</button>
+  </body>
+</html>
+<script>
+  var dice1 = document.querySelector("#member-1");
+  var dice2 = document.querySelector("#member-2");
+  var dice3 = document.querySelector("#member-3");
+  var winner = document.querySelector("#winner");
+  memA = document.querySelector(".memA");
+  memB = document.querySelector(".memB");
+  memC = document.querySelector(".memC");
+  document.querySelector("#roll").addEventListener("click", function () {
+    var a = Math.random() * 6;
+    a = a.toFixed(0);
+    var b = Math.random() * 6;
+    b = b.toFixed(0);
+    var c = Math.random() * 6;
+    c = c.toFixed(0);
+    console.log(a, b, c);
+
+    //Dices
+    dice1.innerHTML = "";
+    i1 = document.createElement("i");
+    p1 = document.createElement("p");
+    p1.innerText = memA.innerText;
+
+    if (a == 1) {
+      i1.setAttribute("class", "fa-solid fa-dice-one");
+    } else if (a == 2) {
+      i1.setAttribute("class", "fa-solid fa-dice-two");
+    } else if (a == 3) {
+      i1.setAttribute("class", "fa-solid fa-dice-three");
+    } else if (a == 4) {
+      i1.setAttribute("class", "fa-solid fa-dice-four");
+    } else if (a == 5) {
+      i1.setAttribute("class", "fa-solid fa-dice-five");
+    } else if (a == 6) {
+      i1.setAttribute("class", "fa-solid fa-dice-six");
+    } else {
+      i1.setAttribute("class", "fa-solid fa-dice-one");
+    }
+    dice1.append(p1, i1);
+    dice2.innerHTML = "";
+    i2 = document.createElement("i");
+    p2 = document.createElement("p");
+    p2.innerText = memB.innerText;
+    if (b == 1) {
+      i2.setAttribute("class", "fa-solid fa-dice-one");
+    } else if (b == 2) {
+      i2.setAttribute("class", "fa-solid fa-dice-two");
+    } else if (b == 3) {
+      i2.setAttribute("class", "fa-solid fa-dice-three");
+    } else if (b == 4) {
+      i2.setAttribute("class", "fa-solid fa-dice-four");
+    } else if (b == 5) {
+      i2.setAttribute("class", "fa-solid fa-dice-five");
+    } else if (b == 6) {
+      i2.setAttribute("class", "fa-solid fa-dice-six");
+    } else {
+      i2.setAttribute("class", "fa-solid fa-dice-one");
+    }
+    dice2.append(p2, i2);
+    dice3.innerHTML = "";
+    i3 = document.createElement("i");
+    p3 = document.createElement("p");
+    p3.innerText = memC.innerText;
+    if (c == 1) {
+      i3.setAttribute("class", "fa-solid fa-dice-one");
+    } else if (c == 2) {
+      i3.setAttribute("class", "fa-solid fa-dice-two");
+    } else if (c == 3) {
+      i3.setAttribute("class", "fa-solid fa-dice-three");
+    } else if (c == 4) {
+      i3.setAttribute("class", "fa-solid fa-dice-four");
+    } else if (c == 5) {
+      i3.setAttribute("class", "fa-solid fa-dice-five");
+    } else if (c == 6) {
+      i3.setAttribute("class", "fa-solid fa-dice-six");
+    } else {
+      i3.setAttribute("class", "fa-solid fa-dice-one");
+    }
+    dice3.append(p3, i3);
+    // Winner
+    if (a > b && a > c) {
+      winner.innerText = "Winner is " + memA.innerText;
+      i1.style.color = "#39b939";
+      if (b > c) {
+        i2.style.color = "yellow";
+        i3.style.color = "red";
+      } else {
+        i3.style.color = "yellow";
+        i2.style.color = "red";
+      }
+    } else if (b > c && b > a) {
+      winner.innerText = "Winner is " + memB.innerText;
+
+      i2.style.color = "#39b939";
+      if (a > c) {
+        i1.style.color = "yellow";
+        i3.style.color = "red";
+      } else {
+        i1.style.color = "red";
+        i3.style.color = "yellow";
+      }
+    } else if (c > a && c > b) {
+      winner.innerText = "Winner is " + memC.innerText;
+
+      i3.style.color = "#39b939";
+      if (a > b) {
+        i1.style.color = "yellow";
+        i2.style.color = "red";
+      } else {
+        i1.style.color = "red";
+        i2.style.color = "yellow";
+      }
+    } else {
+      console.log("Tie");
+      winner.innerText = "Match is draw";
+      i1.style.color = "skyblue";
+      i2.style.color = "skyblue";
+      i3.style.color = "skyblue";
+    }
+  });
+</script>
+<!-- <i class="fa-solid fa-dice-two"></i>
+<i class="fa-solid fa-dice-three"></i>
+<i class="fa-solid fa-dice-four"></i>
+<i class="fa-solid fa-dice-five"></i>
+<i class="fa-solid fa-dice-six"></i> -->
